@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&display=swap");
+h1 {
+  font-size: 50px;
+  margin: 35px 0 0 0;
+}
+h2 {
+  margin: 20px 0 0 0;
+  font-size: 50px;
+}
+.container {
+  margin: 50px auto 10px auto;
+  padding: 0;
+  text-align: center;
+  max-width: 750px;
+  font-family: "Montserrat", sans-serif;
+}
+.current-time {
+  font-size: 20px;
+}
+.time {
+  font-size: 20px;
+}
+.daylight {
+  border-radius: 10px;
+  background-color: rgba(140, 187, 192, 0.795);
+  background-repeat: no-repeat;
+  background-size: 750px;
+}
+.nightlight {
+  border-radius: 10px;
+  background-size: 750px;
+  background-repeat: no-repeat;
+}
+.current-weather-sky:first-letter {
+  text-transform: capitalize;
+}
+#forecast {
+  background: #d3f1fd7c;
+  margin: 20px auto 0px auto;
+  padding: 20px 0 20px 0;
+  border-radius: 5px;
+  font-size: 15px;
+}
+button {
+  margin: 0 5px;
+  background-color: #d3f1fd5b;
+  border-radius: 5px;
+  border-color: #aae0f75b;
+  padding: 10px 20px 10px 20px;
+  transition: all 200ms ease-in-out;
+  border-style: solid;
+}
+button:hover {
+  border-color: #dcf5ff5b;
+  background-color: #aae0f786;
+}
+.coded-by {
+  text-align: center;
+  color: #8c8c8d;
+  font-family: "Montserrat", sans-serif;
+}

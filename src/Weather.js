@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./weather.css";
 import axios from "axios";
+import FormatedDate from "./FormatedDate";
+
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
@@ -11,7 +13,7 @@ export default function Weather(props) {
       city: response.data.name,
       wind: response.data.wind.speed,
       description: response.data.weather[0].description,
-      date: "Friday, 7:00h",
+      date: new Date(response.data.dt * 1000),
       icon: "",
       minTemp: response.data.main.temp_min,
       maxTemp: response.data.main.temp_max,
@@ -31,9 +33,15 @@ export default function Weather(props) {
                 id="city-wanted"
                 autocomplete="off"
               />
-              <button type="submit">🔍</button>
+              <button type="submit">
+                <span role="img" aria-label="search">
+                  🔍
+                </span>
+              </button>
               <button className="btncurrent-location" type="submit">
-                📍
+                <span role="img" aria-label="current-location">
+                  📍
+                </span>
               </button>
             </form>
             <div className="current-weather">
@@ -54,7 +62,9 @@ export default function Weather(props) {
               </div>
               <div className="row current-time">
                 <div className="col time">
-                  <p>{weatherData.date}</p>
+                  <p>
+                    <FormatedDate date={weatherData.date} />
+                  </p>
                 </div>
                 <div className="col current-weather-sky">
                   <span className="current-sky text-capitalize">
@@ -63,7 +73,7 @@ export default function Weather(props) {
                   </span>{" "}
                   |
                   <span className="current-max-temp">
-                    {Math.round(weatherData.maxTemp)}{" "}
+                    {""} {Math.round(weatherData.maxTemp)}{" "}
                   </span>{" "}
                   /
                   <span className="current-min-temp">

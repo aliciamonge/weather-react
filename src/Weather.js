@@ -52,11 +52,6 @@ export default function Weather(props) {
                   🔍
                 </span>
               </button>
-              <button className="btncurrent-location" type="submit">
-                <span role="img" aria-label="current-location">
-                  📍
-                </span>
-              </button>
             </form>
             <WeatherInfo data={weatherData} />
           </div>

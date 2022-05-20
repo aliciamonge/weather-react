@@ -12,7 +12,7 @@ export default function WeatherInfo(props) {
         </div>
         <div className="col current-temperature">
           <h2>
-            <WeatherIcon code={props.data.icon} size={60} />
+            <WeatherIcon code={props.data.icon} size={58} />{" "}
             <WeatherTemperature celsius={props.data.temperature} />
           </h2>
         </div>
@@ -30,9 +30,9 @@ export default function WeatherInfo(props) {
           </span>{" "}
           |
           <span className="current-max-temp">
-            {""} {Math.round(props.data.maxTemp)}{" "}
+            {""} {Math.round(props.data.maxTemp)}º{" "}
           </span>{" "}
-          /
+          /{" "}
           <span className="current-min-temp">
             {Math.round(props.data.minTemp)}
           </span>

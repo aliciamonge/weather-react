@@ -1,27 +1,49 @@
-import React from "react";
-import WeatherIcon from "./WeatherIcon";
+import React, { useState, useEffect } from "react";
 import "./WeatherForecast.css";
 import axios from "axios";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast(props) {
-  function displayForecast(response) {}
-  let apiKey = "0198dea1996842c503892bac0bb89258";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${props.coordinates.lat}&lon=${props.coordinates.lon}&appid=${apiKey}&units=metric`;
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
 
-  axios.get(apiUrl).then(displayForecast);
-  return (
-    <div className="WeatherForecast">
-      <div className="row">
-        <div className="column">
-          <div className="forecast-day">Thu</div>
-          <WeatherIcon code="01d" size={30} />
-          <div>
-            <span className="forecast-max">19º </span>
-            <span className="forecast-min"> 10º</span>
-          </div>
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
+
+  function displayForecast(response) {
+    setForecast(response.data.daily);
+    setLoaded(true);
+  }
+  function load() {
+    let apiKey = "0198dea1996842c503892bac0bb89258";
+    let longitude = props.coordinates.lon;
+    let latitude = props.coordinates.lat;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+    axios.get(apiUrl).then(displayForecast);
+  }
+  if (loaded) {
+    return (
+      <div className="WeatherForecast">
+        <div className="row">
+          {forecast.map(function(dailyForecast, index) {
+            if (index < 5) {
+              return (
+                <div className="col" key={index}>
+                  <WeatherForecastDay data={dailyForecast} />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
         </div>
-        <div className="column"></div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    load();
+
+    return null;
+  }
 }
